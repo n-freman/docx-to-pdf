@@ -1,7 +1,7 @@
-import subprocess
 import os
+import subprocess
 
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, render_template, request, send_from_directory
 from werkzeug.utils import secure_filename
 
 BASE_DIR = os.getcwd()
@@ -47,13 +47,13 @@ def home():
                 secure_filename(filename)
             )
         )
-        os.chdir('uploads')
-        for file in os.listdir():
-            if not file.endswith('.docx'):
-                continue
-            doc2pdf_linux(file)
-        os.system('zip output.zip output/*')
-        os.chdir(BASE_DIR)
+    os.chdir('uploads')
+    for file in os.listdir():
+        if not file.endswith('.docx'):
+            continue
+        doc2pdf_linux(file)
+    os.system('zip output.zip output/*')
+    os.chdir(BASE_DIR)
     return render_template('download.html')
 
 
