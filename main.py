@@ -31,7 +31,7 @@ def home_post():
     os.system('rm -r uploads')
     try:
         os.mkdir('uploads')
-        os.mkidr('output')
+        os.mkdir('output')
     except Exception as e:
         print(e)
     return render_template('index.html')
